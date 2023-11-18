@@ -8,14 +8,16 @@ public class OrderDetail {
 
     private int quantity;
     private double price;
-    @Id
+    @EmbeddedId
+    private OrderDetailId id;
+
     @ManyToOne
-    @JoinColumn(name = "productId")
-    Product product;
-    @Id
+    @MapsId("productId")
+    private Product product;
+
     @ManyToOne
-    @JoinColumn(name = "orderNumber")
-    Order order;
+    @MapsId("orderId")
+    private Order order;
 
     public OrderDetail() {
     }
@@ -25,5 +27,43 @@ public class OrderDetail {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public OrderDetailId getId() {
+        return id;
+    }
+
+    public void setId(OrderDetailId id) {
+        this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

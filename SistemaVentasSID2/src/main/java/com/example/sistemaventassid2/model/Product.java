@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-    private String productId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long productId;
 
     private String description;
 
@@ -28,7 +29,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productId, String description, int quantityAvaliable, double cost, double sellingPrice) {
+    public Product(Long productId, String description, int quantityAvaliable, double cost, double sellingPrice) {
         this.productId = productId;
         this.description = description;
         this.quantityAvaliable = quantityAvaliable;
@@ -36,11 +37,11 @@ public class Product {
         this.sellingPrice = sellingPrice;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

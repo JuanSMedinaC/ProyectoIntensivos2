@@ -1,9 +1,6 @@
 package com.example.sistemaventassid2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -11,7 +8,8 @@ import java.util.List;
 @Table(name="category_products")
 public class CategoryProduct {
     @Id
-    private String code;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long code;
 
     private String description;
 
@@ -21,16 +19,16 @@ public class CategoryProduct {
     public CategoryProduct() {
     }
 
-    public CategoryProduct(String code, String description) {
+    public CategoryProduct(Long code, String description) {
         this.code = code;
         this.description = description;
     }
 
-    public String getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Long code) {
         this.code = code;
     }
 

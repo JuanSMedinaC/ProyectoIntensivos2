@@ -9,7 +9,8 @@ import java.util.List;
 @Table (name = "orders")
 public class Order {
     @Id
-    private String orderNumber;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long orderId;
     private Date orderDate;
     private Date shippedDate;
     private Date paymentDate;
@@ -23,19 +24,19 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderNumber, Date orderDate, Date shippedDate, Date paymentDate) {
-        this.orderNumber = orderNumber;
+    public Order(Long orderId, Date orderDate, Date shippedDate, Date paymentDate) {
+        this.orderId = orderId;
         this.orderDate = orderDate;
         this.shippedDate = shippedDate;
         this.paymentDate = paymentDate;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderId(Long orderNumber) {
+        this.orderId = orderNumber;
     }
 
     public Date getOrderDate() {
