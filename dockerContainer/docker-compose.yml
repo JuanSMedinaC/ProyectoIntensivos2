@@ -1,0 +1,12 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: abc_electronics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+
