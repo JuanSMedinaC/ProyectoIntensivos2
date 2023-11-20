@@ -19,12 +19,13 @@ public class OrderDetail {
     @MapsId("orderId")
     private Order order;
 
-    public OrderDetail() {
-    }
-
     public OrderDetail(int quantity, double price) {
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public OrderDetail() {
+
     }
 
     public int getQuantity() {

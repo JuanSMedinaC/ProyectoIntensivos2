@@ -1,5 +1,6 @@
 package com.example.sistemaventassid2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Customer {
     private String homePhone;
     private String cellPhone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer") //Nombre de la propiedad en la otra clase
     private List<Order> orders;
 

@@ -1,5 +1,6 @@
 package com.example.sistemaventassid2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class CategoryProduct {
 
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoryProduct")
     private List<Product> products;
 

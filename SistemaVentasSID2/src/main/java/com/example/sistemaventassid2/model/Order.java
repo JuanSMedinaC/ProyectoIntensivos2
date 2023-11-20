@@ -1,5 +1,6 @@
 package com.example.sistemaventassid2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -18,6 +19,7 @@ public class Order {
     @JoinColumn(name = "customerId")
     Customer customer;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
