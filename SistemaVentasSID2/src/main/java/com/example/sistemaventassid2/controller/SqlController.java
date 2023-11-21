@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/sql")
+@CrossOrigin(maxAge = 3600)
 public class SqlController {
 
     private final OrderRepository orderRepository;
@@ -83,6 +84,12 @@ public class SqlController {
             return ResponseEntity.status(200).body(product);
         }
         return ResponseEntity.status(404).body("Product not found.");
+    }
+
+    @GetMapping("/orders")
+    public ResponseEntity<?> getOrders(){
+        var orders = orderRepository.findAll();
+        return ResponseEntity.status(200).body(orders);
     }
 
     @GetMapping("/orders/detail/{orderId}/{productId}")

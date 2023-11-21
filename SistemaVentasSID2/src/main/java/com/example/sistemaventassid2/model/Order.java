@@ -19,7 +19,6 @@ public class Order {
     @JoinColumn(name = "customerId")
     Customer customer;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 

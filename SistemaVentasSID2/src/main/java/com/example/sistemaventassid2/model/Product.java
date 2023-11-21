@@ -1,5 +1,6 @@
 package com.example.sistemaventassid2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public class Product {
     private double cost;
 
     private double sellingPrice;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_code")
     CategoryProduct categoryProduct;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails;
 

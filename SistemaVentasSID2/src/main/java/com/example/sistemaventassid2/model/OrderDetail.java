@@ -1,5 +1,6 @@
 package com.example.sistemaventassid2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,7 @@ public class OrderDetail {
     @ManyToOne
     @MapsId("productId")
     private Product product;
-
+    @JsonIgnore
     @ManyToOne
     @MapsId("orderId")
     private Order order;
