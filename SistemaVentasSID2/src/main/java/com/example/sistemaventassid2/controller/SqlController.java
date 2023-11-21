@@ -3,6 +3,7 @@ package com.example.sistemaventassid2.controller;
 import com.example.sistemaventassid2.model.*;
 import com.example.sistemaventassid2.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,25 @@ public class SqlController {
         return ResponseEntity.ok("Customer registered successfully.");
     }
 
+    @PostMapping(value="/customers/getCustomerId",  consumes = "application/json")
+    public ResponseEntity<?> getCustomerId(@RequestBody Customer customer) {
+
+        String firstName = customer.getFirstName();
+        String lastName = customer.getLastName();
+        String address = customer.getAddress();
+        String dateOfBirth = customer.getDateOfBirth();
+        String email = customer.getEmail();
+        String homePhone = customer.getHomePhone();
+        String cellPhone = customer.getCellPhone();
+
+        Optional<Long> oCustomerId = customerRepository.findIdByCustomerInfo(firstName,lastName,address,dateOfBirth,email,homePhone,cellPhone);
+        if(oCustomerId.isPresent()){
+            Long customerId = oCustomerId.get();
+            return ResponseEntity.status(200).body(customerId);
+        }
+        return ResponseEntity.status(400).body("No customer found.");
+    }
+
 
     @GetMapping("/products/category/{categoryId}")
     public ResponseEntity<?> getCategoryProduct(@PathVariable Long categoryId) {
@@ -85,6 +105,18 @@ public class SqlController {
         }
         return ResponseEntity.status(404).body("Product not found.");
     }
+
+    @GetMapping("/products/all")
+    public ResponseEntity<?> getAllProducts() {
+        List<Product> productList = productRepository.findAll();
+
+        if (productList.isEmpty()) {
+            return ResponseEntity.status(404).body("No products found.");
+        }
+
+        return ResponseEntity.status(200).body(productList);
+    }
+
 
     @GetMapping("/orders")
     public ResponseEntity<?> getOrders(){
